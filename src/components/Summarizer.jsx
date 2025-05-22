@@ -58,7 +58,7 @@ const Summarizer = ({
   };
 
   return (
-    <div className="mt-2 grid grid-cols-1 gap-6">
+    <div className="mt-0 sm:mt-3 grid grid-cols-1 gap-2 sm:gap-6">
       {/* Bagian Input */}
       <div className="bg-[var(--theme-bg-secondary)] p-5 rounded-lg border border-[var(--theme-border-color)]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
@@ -78,19 +78,19 @@ const Summarizer = ({
               onChange={(e) => setModel(e.target.value)}
               className="w-full sm:min-w-[180px] py-2 px-3 text-sm bg-[var(--theme-bg-tertiary)] border-[var(--theme-border-color)] focus:border-[var(--theme-accent-blue)] rounded-md"
             >
-              <option value="openai/gpt-3.5-turbo:free">GPT 3.5 Turbo</option>
-              <option value="anthropic/claude-3-opus:free">Claude 3 Opus</option>
-              <option value="deepseek/deepseek-llm-r3:free">DeepSeek R3</option>
-              <option value="google/gemini-2.5-pro:free">Gemini 2.5 Pro</option>
-              <option value="meta-llama/llama-4-70b-instruct:free">Llama 4</option>
-            </select>
+              <option value="openai/gpt-3.5-turbo">GPT 3.5 Turbo</option>
+              <option value="mistralai/devstral-small:free">Misral: Devstral</option>
+              <option value="meta-llama/llama-3-8b-instruct">Llama 3</option>
+              <option value="anthropic/claude-3.5-haiku">Claude 3.5 Haiku</option>
+              {/* Anda bisa menambahkan model lain atau menyesuaikan daftar ini */}
+            </select>j
           </div>
         </div>
 
         <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
-          className="w-full min-h-[160px] p-3 text-sm bg-[var(--theme-bg-tertiary)] border-[var(--theme-border-color)] focus:border-[var(--theme-accent-blue)] rounded-md resize-y"
+          className="w-full min-h-[140px] sm:min-h-[180px] p-3 text-sm bg-[var(--theme-bg-tertiary)] border-[var(--theme-border-color)] focus:border-[var(--theme-accent-blue)] rounded-md resize-y"
           placeholder="Ketik atau tempel teks di sini, atau unggah gambar..."
           disabled={imageProcessing}
         ></textarea>
@@ -127,14 +127,6 @@ const Summarizer = ({
                 disabled={imageProcessing}
               />
             </label>
-            {uploadedImage && (
-              <button
-                onClick={handleClearImage}
-                className="ml-2 text-xs text-[var(--theme-text-placeholder)] hover:text-[var(--theme-accent-blue)] underline"
-              >
-                Hapus Gambar
-              </button>
-            )}
           </div>
           <div className="flex gap-3 ml-auto">
             <button
@@ -180,7 +172,27 @@ const Summarizer = ({
           </div>
         </div>
         {uploadedImage && (
-          <div className="mt-3 p-2 border border-dashed border-[var(--theme-border-color)] rounded-md inline-block bg-[var(--theme-bg-primary]">
+          <div className="mt-3 p-2 border border-dashed border-[var(--theme-border-color)] rounded-md inline-block bg-[var(--theme-bg-primary)] relative">
+            <button
+              onClick={handleClearImage}
+              className="absolute top-1 right-1 p-1 rounded-full bg-gray-400 hover:bg-red-200 transition group"
+              aria-label="Hapus gambar"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeWidth={2}
+                  d="M6 6l12 12M6 18L18 6"
+                  className="stroke-black group-hover:stroke-red-700 transition"
+                />
+              </svg>
+            </button>
             <img
               src={uploadedImage}
               alt="Pratinjau unggahan"
@@ -241,15 +253,9 @@ const Summarizer = ({
       </div>
 
       {/* Selalu tampilkan box detail riwayat */}
-      <div className="bg-[var(--theme-bg-tertiary)] border border-[var(--theme-border-color)] rounded p-4 min-h-[60px] relative transition">
+      <div className="bg-[var(--theme-bg-secondary)] p-5 rounded-lg border border-[var(--theme-border-color)] min-h-[60px] relative transition">
         {selectedHistory ? (
           <>
-            <button
-              className="absolute top-2 right-2 text-xs text-[var(--theme-text-placeholder)] hover:text-red-400"
-              onClick={() => setSelectedHistory(null)}
-            >
-              Tutup
-            </button>
             <div className="text-sm text-[var(--theme-text-primary)] whitespace-pre-line">
               {typeof selectedHistory === "string"
                 ? selectedHistory
@@ -260,6 +266,14 @@ const Summarizer = ({
                 {new Date(selectedHistory.time).toLocaleString()}
               </div>
             )}
+            <div className="flex justify-end mt-3">
+              <button
+                className="px-5 py-2 text-sm bg-[var(--theme-button-primary-bg)] text-[var(--theme-button-primary-text)] hover:bg-[var(--theme-accent-blue-hover)] border border-[var(--theme-border-color)] rounded disabled:opacity-60 transition-colors"
+                onClick={() => setSelectedHistory(null)}
+              >
+                Clear
+              </button>
+            </div>
           </>
         ) : (
           <div className="text-[var(--theme-text-placeholder)] text-sm text-center py-4">

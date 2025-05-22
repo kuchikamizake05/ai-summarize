@@ -5,10 +5,10 @@ import History from "./components/History";
 const App = () => {
   const [inputText, setInputText] = useState("");
   const [summary, setSummary] = useState("");
-  const [history, setHistory] = useState([]);
-  const [model, setModel] = useState("deepseek/deepseek-chat-v3-0324:free");
+  const [model, setModel] = useState("openai/gpt-3.5-turbo");
   const [loading, setLoading] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState(null);
+  const [history, setHistory] = useState([]);
   const [showHistoryMobile, setShowHistoryMobile] = useState(false);
 
   useEffect(() => {
