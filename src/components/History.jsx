@@ -16,7 +16,6 @@ const History = ({ history, onSelect }) => (
       </div>
     </div>
 
-    {/* Container dengan overflow-y-auto untuk scrolling */}
     <div className="flex-1 overflow-y-auto px-3 py-2">
       {!history || history.length === 0 ? (
         <p className="text-base sm:text-xs text-[var(--theme-text-placeholder)]">

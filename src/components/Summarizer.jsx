@@ -19,26 +19,22 @@ const Summarizer = ({
 
   const extractTextFromImage = async (file) => {
     setImageProcessing(true);
-    setInputText("Memproses gambar untuk ekstraksi teks..."); // Pesan loading
-    let worker; // Deklarasikan worker di sini agar bisa diakses di finally
+    setInputText("Memproses gambar untuk ekstraksi teks..."); 
+    let worker; 
 
     try {
-      // Sediakan bahasa langsung ke createWorker.
-      // Tidak perlu lagi worker.loadLanguage() dan worker.initialize() secara terpisah.
       worker = await createWorker("eng+ind");
 
       const {
         data: { text },
       } = await worker.recognize(file);
-      // worker.terminate() dipindahkan ke blok finally
       setInputText(text);
-      // return text; // Tidak perlu return jika hanya set state
     } catch (error) {
       console.error("Error extracting text:", error);
       setInputText("Gagal mengekstrak teks dari gambar. Lihat konsol untuk detail.");
     } finally {
       if (worker) {
-        await worker.terminate(); // Pastikan worker selalu dihentikan
+        await worker.terminate(); 
       }
       setImageProcessing(false);
     }
@@ -78,12 +74,12 @@ const Summarizer = ({
               onChange={(e) => setModel(e.target.value)}
               className="w-full sm:min-w-[180px] py-2 px-3 text-sm bg-[var(--theme-bg-tertiary)] border-[var(--theme-border-color)] focus:border-[var(--theme-accent-blue)] rounded-md"
             >
-              <option value="openai/gpt-3.5-turbo">GPT 3.5 Turbo</option>
-              <option value="mistralai/devstral-small:free">Misral: Devstral</option>
-              <option value="meta-llama/llama-3-8b-instruct">Llama 3</option>
-              <option value="anthropic/claude-3.5-haiku">Claude 3.5 Haiku</option>
+              <option value="openai/gpt-3.5-turbo" className="text-[10px] sm:text-sm">GPT 3.5 Turbo</option>
+              <option value="mistralai/devstral-small:free" className="text-[10px] sm:text-sm">Mistral: Devstral</option>
+              <option value="meta-llama/llama-3-8b-instruct" className="text-[10px] sm:text-sm">Llama 3</option>
+              <option value="anthropic/claude-3.5-haiku" className="text-[10px] sm:text-sm">Claude 3.5 Haiku</option>
               {/* Anda bisa menambahkan model lain atau menyesuaikan daftar ini */}
-            </select>j
+            </select>
           </div>
         </div>
 

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { HiMail } from "react-icons/hi";
+import { FaGithub, FaDiscord } from "react-icons/fa";
 import Summarizer from "./components/Summarizer";
 import History from "./components/History";
 
@@ -33,6 +35,10 @@ const App = () => {
           body: JSON.stringify({
             model: model,
             messages: [
+              {
+                role: "system",
+                content: `You are a helpful assistant that summarizes text. You will only answer with the summary of the text. Do not add any additional information or context.`
+              },
               {
                 role: "user",
                 content: `Summarize the following text without any addition answer. Answer in the language the user speaks:\n${inputText}`,
@@ -83,13 +89,40 @@ const App = () => {
           />
         </div>
         <div className="border-t border-[var(--theme-divider-color)] px-4 py-3 text-xs text-[var(--theme-text-secondary)]">
-          <div className="mb-2">
-            <strong>About:</strong>
-            <div>AI Summarizer adalah aplikasi untuk meringkas teks atau gambar secara otomatis menggunakan AI.</div>
-          </div>
-          <div>
-            <strong>Contact:</strong>
-            <div>Email: info@aisummarizer.com</div>
+          <div className="ml-3">
+            <strong>Contact</strong>
+            <div className="mt-2 flex items-center justify-center space-x-4">
+              {/* Email - hanya ikon */}
+              <a
+                href="https://mail.google.com/mail/u/0/?to=faaidsakhaa@gmail.com&fs=1&tf=cm"
+                className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-accent-blue)] transition-colors duration-200"
+                title="Email: faaidsakhaa@gmail.com"
+              >
+                <HiMail className="w-5 h-5" />
+              </a>
+              
+              {/* GitHub - hanya ikon */}
+              <a
+                href="https://github.com/kuchikamizake05"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-accent-blue)] transition-colors duration-200"
+                title="GitHub: kuchikamizake05"
+              >
+                <FaGithub className="w-5 h-5" />
+              </a>
+              
+              {/* Discord - hanya ikon */}
+              <a
+                href="https://discordapp.com/users/489719895425155082"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[var(--theme-text-secondary)] hover:text-[var(--theme-accent-blue)] transition-colors duration-200"
+                title="Discord"
+              >
+                <FaDiscord className="w-5 h-5" />
+              </a>
+            </div>
           </div>
         </div>
       </aside>
