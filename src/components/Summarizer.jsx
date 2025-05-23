@@ -54,19 +54,19 @@ const Summarizer = ({
   };
 
   return (
-    <div className="mt-0 sm:mt-3 grid grid-cols-1 gap-2 sm:gap-6">
+    <div className="mt-0 sm:mt-3 grid grid-cols-1 gap-2 sm:gap-5">
       {/* Bagian Input */}
       <div className="bg-[var(--theme-bg-secondary)] p-5 rounded-lg border border-[var(--theme-border-color)]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
           <h2 className="text-lg font-medium text-[var(--theme-text-primary)] mb-3 sm:mb-0">
-            Input Teks
+            Input your Text
           </h2>
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <label
               htmlFor="model-select"
               className="text-sm text-[var(--theme-text-secondary)] whitespace-nowrap"
             >
-              Model AI:
+              Select AI:
             </label>
             <select
               id="model-select"
@@ -87,7 +87,7 @@ const Summarizer = ({
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           className="w-full min-h-[140px] sm:min-h-[180px] p-3 text-sm bg-[var(--theme-bg-tertiary)] border-[var(--theme-border-color)] focus:border-[var(--theme-accent-blue)] rounded-md resize-y"
-          placeholder="Ketik atau tempel teks di sini, atau unggah gambar..."
+          placeholder="Type or paste text here, or upload an image..."
           disabled={imageProcessing}
         ></textarea>
 
@@ -159,10 +159,10 @@ const Summarizer = ({
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Meringkas...
+                  Summarizing...
                 </>
               ) : (
-                "Ringkas"
+                "Summarize"
               )}
             </button>
           </div>
@@ -201,7 +201,7 @@ const Summarizer = ({
       {/* Bagian Output */}
       <div className="w-full bg-[var(--theme-bg-secondary)] p-5 rounded-lg border border-[var(--theme-border-color)] min-h-[120px] max-h-[220px] overflow-y-auto">
         <h2 className="text-lg font-medium text-[var(--theme-text-primary)] mb-3">
-          Hasil Ringkasan
+          Summary
         </h2>
         <div className="text-sm">
           {loading && !summary && (
@@ -226,12 +226,12 @@ const Summarizer = ({
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
-              Memproses ringkasan...
+              Processing...
             </div>
           )}
           {!loading && !summary && (
             <p className="text-[var(--theme-text-placeholder)]">
-              Ringkasan akan muncul di sini setelah teks diproses.
+              The summary will appear here after the text is processed.
             </p>
           )}
           {summary && (
@@ -273,7 +273,7 @@ const Summarizer = ({
           </>
         ) : (
           <div className="text-[var(--theme-text-placeholder)] text-sm text-center py-4">
-            Pilih salah satu riwayat ringkasan di sidebar untuk melihat detail di sini.
+            Select one of the summary histories in the sidebar to see the details here.
           </div>
         )}
       </div>

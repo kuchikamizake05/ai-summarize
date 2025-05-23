@@ -73,12 +73,31 @@ const App = () => {
     setSummary("");
   };
 
+  // Fungsi untuk menghapus item history tertentu
+  const handleDeleteHistory = (indexToDelete) => {
+    const updatedHistory = history.filter((_, index) => index !== indexToDelete);
+    setHistory(updatedHistory);
+    localStorage.setItem("summaryHistory", JSON.stringify(updatedHistory));
+    
+    // Jika item yang dipilih adalah item yang dihapus, clear selection
+    if (selectedHistory && history[indexToDelete] === selectedHistory) {
+      setSelectedHistory(null);
+    }
+  };
+
+  // Fungsi untuk menghapus semua history
+  const handleClearAllHistory = () => {
+    setHistory([]);
+    setSelectedHistory(null);
+    localStorage.removeItem("summaryHistory");
+  };
+
   return (
     <div className="min-h-screen bg-[var(--theme-bg-primary)] flex">
-      {/* Sidebar hanya tampil di desktop */}
+      {/* Sidebar desktop */}
       <aside className="hidden sm:flex fixed left-0 top-0 w-64 h-screen bg-[var(--theme-bg-secondary)] border-r border-[var(--theme-divider-color)] flex-col z-40">
         <div className="h-16 flex items-center justify-center border-b border-[var(--theme-divider-color)]">
-          <span className="text-xl font-bold text-[var(--theme-accent-blue)] tracking-wide">
+          <span className="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent">
             AI Summarizer
           </span>
         </div>
@@ -86,12 +105,14 @@ const App = () => {
           <History
             history={history}
             onSelect={setSelectedHistory}
+            onDelete={handleDeleteHistory}
+            onClearAll={handleClearAllHistory}
           />
         </div>
         <div className="border-t border-[var(--theme-divider-color)] px-4 py-3 text-xs text-[var(--theme-text-secondary)]">
-          <div className="ml-3">
-            <strong>Contact</strong>
             <div className="mt-2 flex items-center justify-center space-x-4">
+               <strong>Contact</strong>
+               <strong>:</strong>
               {/* Email - hanya ikon */}
               <a
                 href="https://mail.google.com/mail/u/0/?to=faaidsakhaa@gmail.com&fs=1&tf=cm"
@@ -123,7 +144,6 @@ const App = () => {
                 <FaDiscord className="w-5 h-5" />
               </a>
             </div>
-          </div>
         </div>
       </aside>
 
@@ -142,7 +162,7 @@ const App = () => {
             <rect y="17" width="24" height="2" rx="1" fill="currentColor" />
           </svg>
         </button>
-        <span className="text-xl font-bold text-[var(--theme-accent-blue)] tracking-wide">
+        <span className="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent">
           AI Summarizer
         </span>
       </div>
@@ -158,14 +178,14 @@ const App = () => {
           {/* Drawer */}
           <div className="relative bg-[var(--theme-bg-secondary)] w-72 max-w-full h-full p-4 shadow-lg overflow-y-auto z-10">
             <div className="flex justify-between items-center mb-4">
-              <span className="font-bold text-xl text-[var(--theme-accent-blue)]">
+              <span className="font-bold text-xl bg-gradient-to-r from-blue-400 via-blue-300 to-blue-400 bg-clip-text text-transparent">
                 AI Summarizer
               </span>
               <button
-                className="text-sm text-[var(--theme-accent-blue)]"
+                className="text-lg px-3 py-2 text-[var(--theme-accent-blue)] hover:text-white"
                 onClick={() => setShowHistoryMobile(false)}
               >
-                Tutup
+                Close
               </button>
             </div>
             <History
@@ -174,6 +194,8 @@ const App = () => {
                 setSelectedHistory(item);
                 setShowHistoryMobile(false);
               }}
+              onDelete={handleDeleteHistory}
+              onClearAll={handleClearAllHistory}
             />
           </div>
         </div>
