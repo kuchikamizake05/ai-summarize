@@ -12,7 +12,6 @@ AI Summarizer is a web application that allows users to quickly summarize long t
   * Delete individual history items.
   * Clear all history at once.
 * **Responsive Design**: User interface accessible on both desktop and mobile devices.
-* **Light/Dark Theme**: (If implemented) Support for light and dark themes.
 
 ## Technologies Used
 
