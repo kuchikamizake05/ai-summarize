@@ -54,7 +54,7 @@ const Summarizer = ({
   };
 
   return (
-    <div className="mt-3 sm:mt-3 grid grid-cols-1 gap-5 sm:gap-5">
+    <div className="mt-2 sm:mt-3 grid grid-cols-1 gap-5 sm:gap-5">
       {/* Bagian Input */}
       <div className="bg-[var(--theme-bg-secondary)] p-5 rounded-lg border border-[var(--theme-border-color)]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
