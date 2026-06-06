@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@copilotkit/react-core": "^1.59.5",
     "@tailwindcss/vite": "^4.0.14",
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.17.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.17.0",
     "tailwindcss": "^4.0.14",
     "tesseract.js": "^6.0.1"
   },

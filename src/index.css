@@ -1,165 +1,120 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-/* Variabel Palet Warna Gelap Aplikasi & Gaya Dasar */
 @layer base {
-  :root {
-    --theme-bg-primary: #202124;    /* Latar belakang utama yang sangat gelap */
-    --theme-bg-secondary: #292a2d;  /* Latar belakang untuk permukaan/kartu */
-    --theme-bg-tertiary: #303134;   /* Permukaan yang sedikit lebih terang, atau hover */
-    --theme-text-primary: #e8eaed;   /* Teks utama (abu-abu terang) */
-    --theme-text-secondary: #bdc1c6; /* Teks sekunder (abu-abu sedang) */
-    --theme-text-placeholder: #9aa0a6;/* Teks placeholder */
-    --theme-accent-blue: #8ab4f8;    /* Warna aksen biru utama */
-    --theme-accent-blue-hover: #a3c5f9;
-    --theme-border-color: #3c4043;        /* Warna border yang halus */
-    --theme-divider-color: #3c4043;       /* Warna untuk garis pemisah */
-    
-    --theme-button-primary-bg: var(--theme-accent-blue);
-    --theme-button-primary-text: #202124; /* Teks gelap di atas tombol biru terang */
-    --theme-button-secondary-bg: var(--theme-bg-tertiary);
-    --theme-button-secondary-text: var(--theme-accent-blue);
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: #11130f;
   }
 
   body {
-    font-family: 'Roboto', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    color: var(--theme-text-primary);
-    background-color: var(--theme-bg-primary); /* Ini akan mengatur latar belakang utama */
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: 0; /* Pastikan tidak ada margin default pada body */
-    padding: 0; /* Pastikan tidak ada padding default pada body */
-  }
-
-  #root { /* Pastikan #root tidak meng-override background atau text-align */
+    min-width: 320px;
     margin: 0;
-    padding: 0;
-    max-width: none; 
-    text-align: left; 
+    color: #f2f4e8;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(182, 242, 100, 0.16), transparent 30rem),
+      linear-gradient(135deg, rgba(255, 211, 106, 0.08), transparent 26rem),
+      #11130f;
+    font-family: "Instrument Sans", Inter, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'Roboto', sans-serif;
-    font-weight: 500;
-    color: var(--theme-text-primary);
+  #root {
+    min-height: 100vh;
+  }
+
+  button,
+  select,
+  textarea {
+    font: inherit;
   }
 
   button {
-    font-weight: 500;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
   }
 
-  textarea,
-  select,
-  input[type="text"],
-  input[type="file"] {
-    background-color: var(--theme-bg-secondary);
-    color: var(--theme-text-primary);
-    border: 1px solid var(--theme-border-color);
-    border-radius: 4px;
-    padding: 0.65rem 0.9rem;
+  button:disabled,
+  select:disabled,
+  textarea:disabled {
+    cursor: not-allowed;
   }
 
-  textarea::placeholder,
-  input::placeholder {
-    color: var(--theme-text-placeholder);
-  }
-
-  textarea:focus,
-  select:focus,
-  input:focus {
-    outline: none;
-    border-color: var(--theme-accent-blue);
-    box-shadow: 0 0 0 2px rgba(138, 180, 248, 0.35);
+  ::selection {
+    color: #11130f;
+    background: #b6f264;
   }
 
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
+
   ::-webkit-scrollbar-track {
-    background: var(--theme-bg-primary);
+    background: #11130f;
   }
+
   ::-webkit-scrollbar-thumb {
-    background-color: var(--theme-bg-tertiary);
-    border-radius: 5px;
-    border: 2px solid var(--theme-bg-primary);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--theme-border-color);
+    border: 2px solid #11130f;
+    border-radius: 999px;
+    background: #3b4936;
   }
 }
 
-@layer components {
-  .prose-custom-dark {
-    color: var(--theme-text-secondary);
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
   }
-  .prose-custom-dark h1, 
-  .prose-custom-dark h2, 
-  .prose-custom-dark h3, 
-  .prose-custom-dark h4 {
-    color: var(--theme-text-primary);
-    @apply mb-3 mt-5 font-medium;
-  }
-  .prose-custom-dark h1 { @apply text-xl; }
-  .prose-custom-dark h2 { @apply text-lg; }
-  .prose-custom-dark h3 { @apply text-base; }
-
-  .prose-custom-dark p {
-    @apply my-3;
-  }
-  .prose-custom-dark a {
-    color: var(--theme-accent-blue);
-    text-decoration: none;
-  }
-  .prose-custom-dark a:hover {
-    text-decoration: underline;
-  }
-  .prose-custom-dark strong {
-    color: var(--theme-text-primary);
-    font-weight: 600;
-  }
-  .prose-custom-dark code {
-    background-color: var(--theme-bg-secondary);
-    color: var(--theme-text-secondary);
-    padding: 0.2em 0.4em;
-    margin: 0 0.1em;
-    border-radius: 3px;
-    font-size: 0.9em;
-    border: 1px solid var(--theme-border-color);
-  }
-  .prose-custom-dark pre {
-    background-color: var(--theme-bg-secondary);
-    color: var(--theme-text-secondary);
-    padding: 1em;
-    border-radius: 4px;
-    overflow-x: auto;
-    border: 1px solid var(--theme-border-color);
-  }
-  .prose-custom-dark pre code {
-    background-color: transparent;
-    padding: 0;
-    margin: 0;
-    border: none;
-  }
-  .prose-custom-dark blockquote {
-    border-left: 3px solid var(--theme-accent-blue);
-    color: var(--theme-text-secondary);
-    padding-left: 1em;
-    margin-left: 0;
-    @apply my-4 italic;
-  }
-  .prose-custom-dark ul,
-  .prose-custom-dark ol {
-    @apply my-3 pl-6;
-  }
-  .prose-custom-dark li {
-    @apply mb-1;
-  }
-  .prose-custom-dark li::marker {
-    color: var(--theme-text-secondary);
+  50% {
+    transform: translate3d(18px, -22px, 0) scale(1.08);
   }
 }
 
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes text-scan {
+  0% {
+    opacity: 0.42;
+    transform: translateX(-8px);
+  }
+  45%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@theme {
+  --font-sans: "Instrument Sans", Inter, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Instrument Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-delayed: float 8s ease-in-out 800ms infinite reverse;
+  --animate-rise-in: rise-in 700ms ease-out both;
+  --animate-rise-in-delay: rise-in 700ms ease-out 160ms both;
+  --animate-text-scan: text-scan 1.7s ease-out both infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}

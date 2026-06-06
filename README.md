@@ -1,10 +1,11 @@
 # AI Summarizer
 
-AI Summarizer is a web application that allows users to quickly summarize long texts using various AI models. The application also supports text extraction from images (OCR) for subsequent summarization. Summarization history is stored locally in the user's browser for easy access.
+AI Summarizer is a web application that allows users to quickly summarize long texts using various AI models. It includes an animated landing page, an app workspace, OCR text extraction from images, and local browser history.
 
 ## Key Features
 
-* **Text Summarization**: Input or paste long texts to get concise summaries.
+* **Landing Page**: Animated landing page at `/` with a quick product demo.
+* **Text Summarization**: Use the app workspace at `/app` to input or paste long texts and get concise summaries.
 * **AI Model Selection**: Choose from various available AI models (e.g., GPT-3.5 Turbo, Mistral, Llama 3, Claude 3.5 Haiku) to perform summarization.
 * **Text Extraction from Images (OCR)**: Upload an image containing text, and the application will extract the text for summarization.
 * **Summarization History**: All summaries are stored locally in your browser.
@@ -12,6 +13,7 @@ AI Summarizer is a web application that allows users to quickly summarize long t
   * Delete individual history items.
   * Clear all history at once.
 * **Responsive Design**: User interface accessible on both desktop and mobile devices.
+* **Secure API Boundary**: The frontend calls `/api/summarize`; the OpenRouter key stays server-side.
 
 ## Technologies Used
 
@@ -19,6 +21,7 @@ AI Summarizer is a web application that allows users to quickly summarize long t
   * [React](https://reactjs.org/)
   * [Vite](https://vitejs.dev/)
   * [Tailwind CSS](https://tailwindcss.com/)
+  * [React Router](https://reactrouter.com/)
 * **AI Summarization**:
   * [OpenRouter API](https://openrouter.ai/) (for accessing various LLM models)
 * **Text Extraction from Images (OCR)**:
@@ -52,7 +55,7 @@ AI Summarizer is a web application that allows users to quickly summarize long t
     Create a `.env` file in the project root directory and add your OpenRouter API key:
 
     ```env
-    VITE_OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ```
 
     Replace `sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` with your valid OpenRouter API key.
@@ -65,7 +68,7 @@ AI Summarizer is a web application that allows users to quickly summarize long t
     yarn dev
     ```
 
-    The application will run at `http://localhost:5173` (or another port if 5173 is already in use).
+    The landing page runs at `http://localhost:5173`; the summarizer app runs at `http://localhost:5173/app`.
 
 ## How to Use
 
@@ -80,11 +83,12 @@ AI Summarizer is a web application that allows users to quickly summarize long t
 
 ## Environment Variables
 
-* `VITE_OPENROUTER_API_KEY`: Your API key for accessing the OpenRouter service. Required for the AI summarization feature.
+* `OPENROUTER_API_KEY`: Server-side API key for accessing OpenRouter. Required by `/api/summarize`.
+* `VITE_COPILOTKIT_RUNTIME_URL`: Optional CopilotKit runtime endpoint. If omitted, the app runs without CopilotKit UI.
 
 ## Deployment
 
-This application can be deployed to platforms like Vercel, Netlify, or GitHub Pages. Ensure you configure the `VITE_OPENROUTER_API_KEY` environment variable in your deployment platform's settings.
+This application is configured for Vercel-style deployment with `api/summarize.js` and SPA rewrites in `vercel.json`. Configure `OPENROUTER_API_KEY` in the deployment platform's server-side environment variables.
 
 ## Contributing
 
