@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
-import { History as HistoryIcon, Mail, Menu, MessageCircle, Sparkles, Trash2 } from "lucide-react";
+import { History as HistoryIcon, Mail, Menu, MessageCircle, Trash2 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import LandingPage from "./components/LandingPage";
 import Summarizer from "./components/Summarizer";
@@ -9,6 +9,7 @@ import HistoryDetailDrawer from "./components/HistoryDetailDrawer";
 import Dialog from "./components/ui/Dialog";
 import Sheet from "./components/ui/Sheet";
 import ToastStack from "./components/ui/ToastStack";
+import { brand, brandAssets } from "./constants/brand";
 import { models } from "./constants/models";
 import { cn, ui } from "./lib/ui";
 
@@ -65,6 +66,35 @@ const StatPill = ({ label, value }) => (
     <span className="block text-sm font-semibold text-white">{value}</span>
     <span className="text-[0.62rem] uppercase tracking-[0.14em] text-white/34">{label}</span>
   </div>
+);
+
+const LogoMark = ({ className = "h-9 w-9" }) => (
+  <img
+    src={brandAssets.logoIcon}
+    alt={`${brand.product} logo`}
+    className={cn("shrink-0 rounded-lg object-contain", className)}
+  />
+);
+
+const BrandLockup = ({ compact = false }) => (
+  compact ? (
+    <div className="flex min-w-0 items-center gap-3">
+      <LogoMark className="h-8 w-8" />
+      <div className="min-w-0">
+        <p className={ui.label}>{brand.lab}</p>
+        <h1 className="truncate font-display text-base font-semibold tracking-[-0.04em] text-white">{brand.product}</h1>
+      </div>
+    </div>
+  ) : (
+    <div>
+      <p className={ui.label}>{brand.lab}</p>
+      <img
+        src={brandAssets.logoWordmark}
+        alt={`${brand.product} wordmark`}
+        className="mt-2 h-auto w-full max-w-[13rem] object-contain"
+      />
+    </div>
+  )
 );
 
 const SocialDock = () => (
@@ -349,15 +379,7 @@ const SummarizerApp = () => {
     <div className={cn(ui.canvas, "min-h-screen lg:grid lg:grid-cols-[17.5rem_minmax(0,1fr)]")}>
       <aside className="sticky top-0 hidden h-screen min-h-0 flex-col gap-3 border-r border-white/10 bg-[#090b0b]/90 p-3 backdrop-blur-2xl lg:flex">
         <Link className={cn(ui.panelElevated, "group block p-3 no-underline")} to="/">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className={ui.label}>KMTETI Lab</p>
-              <h1 className="mt-1.5 font-display text-xl font-semibold tracking-[-0.04em] text-white">AI Summarizer</h1>
-            </div>
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-[#b6f264] text-black transition group-hover:rotate-3">
-              <Sparkles size={16} />
-            </span>
-          </div>
+          <BrandLockup />
         </Link>
 
         <div className="grid grid-cols-2 gap-3">
@@ -394,10 +416,7 @@ const SummarizerApp = () => {
               <button className={cn(ui.icon, "lg:hidden")} type="button" onClick={() => setShowHistoryMobile(true)} aria-label="Buka history">
                 <Menu size={17} />
               </button>
-              <div className="min-w-0">
-                <p className={ui.label}>Workspace</p>
-                <h2 className="truncate font-display text-base font-semibold tracking-[-0.035em] text-white sm:text-lg">AI Summarizer</h2>
-              </div>
+              <BrandLockup compact />
             </div>
 
             <div className="hidden min-w-0 items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#07080a]/70 px-3 py-2 text-sm text-white/46 md:flex">

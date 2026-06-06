@@ -11,6 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { brand, brandAssets } from "../constants/brand";
 import { cn, fadeUp, stagger, ui } from "../lib/ui";
 
 const MotionArticle = motion.article;
@@ -71,6 +72,17 @@ const LandingPage = () => {
 
         <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(26rem,0.98fr)]">
           <MotionDiv className="max-w-[42rem]" initial="hidden" animate="show" variants={stagger}>
+            <MotionDiv variants={fadeUp} className="mb-5 flex items-center gap-3">
+              <img src={brandAssets.logoIcon} alt={`${brand.product} logo`} className="h-14 w-14 object-contain" />
+              <div>
+                <p className={ui.label}>{brand.lab}</p>
+                <img
+                  src={brandAssets.logoWordmark}
+                  alt={`${brand.product} wordmark`}
+                  className="mt-1 h-auto w-[min(18rem,68vw)] object-contain"
+                />
+              </div>
+            </MotionDiv>
             <MotionP variants={fadeUp} className={ui.label}>
               AI Summarizer command center
             </MotionP>
