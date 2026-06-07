@@ -38,8 +38,7 @@ export default async function handler(req, res) {
       text: body.text,
       model: body.model,
       mode: body.mode,
-      apiKey: process.env.OPENROUTER_API_KEY,
-      origin: req.headers.origin,
+      apiKey: process.env.GROQ_API_KEY,
     });
 
     return res.status(200).json(result);

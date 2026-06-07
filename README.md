@@ -6,14 +6,14 @@ AI Summarizer is a web application that allows users to quickly summarize long t
 
 * **Landing Page**: Animated landing page at `/` with a quick product demo.
 * **Text Summarization**: Use the app workspace at `/app` to input or paste long texts and get concise summaries.
-* **AI Model Selection**: Choose from various available AI models (e.g., GPT-3.5 Turbo, Mistral, Llama 3, Claude 3.5 Haiku) to perform summarization.
+* **AI Model Selection**: Choose from Groq production chat models (Llama 3.3 70B, Llama 3.1 8B, GPT OSS 120B, GPT OSS 20B) to perform summarization.
 * **Text Extraction from Images (OCR)**: Upload an image containing text, and the application will extract the text for summarization.
 * **Summarization History**: All summaries are stored locally in your browser.
   * View summary details from the history.
   * Delete individual history items.
   * Clear all history at once.
 * **Responsive Design**: User interface accessible on both desktop and mobile devices.
-* **Secure API Boundary**: The frontend calls `/api/summarize`; the OpenRouter key stays server-side.
+* **Secure API Boundary**: The frontend calls `/api/summarize`; the Groq key stays server-side.
 
 ## Technologies Used
 
@@ -23,7 +23,7 @@ AI Summarizer is a web application that allows users to quickly summarize long t
   * [Tailwind CSS](https://tailwindcss.com/)
   * [React Router](https://reactrouter.com/)
 * **AI Summarization**:
-  * [OpenRouter API](https://openrouter.ai/) (for accessing various LLM models)
+  * [Groq API](https://console.groq.com/docs/) (OpenAI-compatible chat completions)
 * **Text Extraction from Images (OCR)**:
   * [Tesseract.js](https://tesseract.projectnaptha.com/)
 * **Icons**:
@@ -52,13 +52,13 @@ AI Summarizer is a web application that allows users to quickly summarize long t
     ```
 
 3. **Setup Environment Variables:**
-    Create a `.env` file in the project root directory and add your OpenRouter API key:
+    Create a `.env` file in the project root directory and add your Groq API key:
 
     ```env
-    OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    GROQ_API_KEY=your_groq_api_key_here
     ```
 
-    Replace `sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` with your valid OpenRouter API key.
+    Replace the placeholder with a valid Groq API key. Keep this key server-side only.
 
 4. **Run the Application (Development Mode):**
 
@@ -83,12 +83,12 @@ AI Summarizer is a web application that allows users to quickly summarize long t
 
 ## Environment Variables
 
-* `OPENROUTER_API_KEY`: Server-side API key for accessing OpenRouter. Required by `/api/summarize`.
+* `GROQ_API_KEY`: Server-side API key for accessing Groq. Required by `/api/summarize`.
 * `VITE_COPILOTKIT_RUNTIME_URL`: Optional CopilotKit runtime endpoint. If omitted, the app runs without CopilotKit UI.
 
 ## Deployment
 
-This application is configured for Vercel-style deployment with `api/summarize.js` and SPA rewrites in `vercel.json`. Configure `OPENROUTER_API_KEY` in the deployment platform's server-side environment variables.
+This application is configured for Vercel-style deployment with `api/summarize.js` and SPA rewrites in `vercel.json`. Configure `GROQ_API_KEY` in the deployment platform's server-side environment variables.
 
 ## Contributing
 

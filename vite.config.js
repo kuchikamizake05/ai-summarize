@@ -42,7 +42,6 @@ const summarizeDevMiddleware = (apiKey) => ({
           model: body.model,
           mode: body.mode,
           apiKey,
-          origin: "http://localhost",
         });
         sendJson(res, 200, result);
       } catch (error) {
@@ -59,6 +58,6 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
-    plugins: [summarizeDevMiddleware(env.OPENROUTER_API_KEY), react(), tailwindcss()],
+    plugins: [summarizeDevMiddleware(env.GROQ_API_KEY), react(), tailwindcss()],
   };
 });

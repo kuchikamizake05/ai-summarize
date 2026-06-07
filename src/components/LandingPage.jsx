@@ -21,14 +21,14 @@ const MotionP = motion.p;
 
 const summarySteps = [
   { label: "Input", value: "1.284 kata dari catatan pelatihan" },
-  { label: "Model", value: "Claude 3.5 Haiku, bahasa otomatis" },
+  { label: "Model", value: "Llama 3.3 70B, bahasa otomatis" },
   { label: "Output", value: "5 poin inti + tindak lanjut" },
 ];
 
 const commandRows = [
   { icon: FileText, title: "Paste long notes", meta: "artikel, rapat, materi kuliah" },
   { icon: Image, title: "Extract text from image", meta: "OCR client-side" },
-  { icon: Sparkles, title: "Summarize in same language", meta: "server-safe OpenRouter endpoint" },
+  { icon: Sparkles, title: "Summarize in same language", meta: "server-side Groq endpoint" },
 ];
 
 const featureCards = [
@@ -202,20 +202,14 @@ const LandingPage = () => {
       </section>
 
       <section id="demo" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-          <div>
-            <p className={ui.label}>Built for momentum</p>
-            <h2 className="mt-3 max-w-3xl text-balance font-display text-[clamp(2rem,4.5vw,4.2rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
-              Dari bahan mentah ke keputusan kecil berikutnya.
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-white/54">
-              Bukan tempat menumpuk teks lagi. Cukup masukkan bahan, ambil intinya, lalu lanjut kerja tanpa kehilangan arah.
-            </p>
-          </div>
-          <Link className={cn(ui.secondary, "self-start lg:self-end")} to="/app">
-            Coba sekarang
-            <ArrowRight size={16} />
-          </Link>
+        <div className="mb-8">
+          <p className={ui.label}>Built for momentum</p>
+          <h2 className="mt-3 max-w-3xl text-balance font-display text-[clamp(2rem,4.5vw,4.2rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
+            Dari bahan mentah ke keputusan kecil berikutnya.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-white/54">
+            Bukan tempat menumpuk teks lagi. Cukup masukkan bahan, ambil intinya, lalu lanjut kerja tanpa kehilangan arah.
+          </p>
         </div>
 
         <div id="features" className="grid auto-rows-[13rem] gap-4 lg:grid-cols-3">
