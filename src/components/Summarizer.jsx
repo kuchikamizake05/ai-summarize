@@ -177,7 +177,7 @@ const Summarizer = ({
                   setInputText(event.target.value);
                   onSourceChange("text");
                 }}
-                className={cn(ui.input, "min-h-[15rem] w-full resize-y p-3 text-sm leading-6 lg:min-h-[18rem]")}
+                className={cn(ui.input, "min-h-[12rem] w-full resize-y p-3 text-sm leading-6 sm:min-h-[15rem] lg:min-h-[18rem]")}
                 placeholder="Tempel artikel, catatan rapat, materi kuliah, atau teks hasil OCR di sini..."
                 disabled={imageProcessing}
               />
@@ -188,7 +188,7 @@ const Summarizer = ({
               exit={{ opacity: 0, y: -8 }}
               initial={{ opacity: 0, y: 8 }}
               key="ocr"
-              className="grid min-h-[16rem] place-items-center rounded-lg border border-dashed border-white/14 bg-[#07080a]/80 p-5 text-center lg:min-h-[18rem]"
+              className="grid min-h-[12rem] place-items-center rounded-lg border border-dashed border-white/14 bg-[#07080a]/80 p-4 text-center sm:min-h-[16rem] sm:p-5 lg:min-h-[18rem]"
             >
               <div>
                 <Image className="mx-auto text-[#b6f264]" size={28} />
@@ -205,13 +205,13 @@ const Summarizer = ({
           )}
         </AnimatePresence>
 
-        <div className="mt-2.5 flex flex-wrap items-center gap-3 text-xs text-white/38">
+        <div className="mt-2.5 grid grid-cols-2 items-center gap-2 text-xs text-white/38 sm:flex sm:flex-wrap sm:gap-3">
           <span>{stats.words} kata</span>
           <span>{stats.chars} karakter</span>
-          <label className="inline-flex items-center gap-2">
+          <label className="col-span-2 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 sm:col-span-1 sm:inline-flex">
             <span>Model</span>
             <select
-              className={cn(ui.input, "min-h-8 rounded-md px-2 py-1 text-xs")}
+              className={cn(ui.input, "min-h-8 min-w-0 rounded-md px-2 py-1 text-xs")}
               value={model}
               onChange={(event) => setModel(event.target.value)}
             >
@@ -222,11 +222,11 @@ const Summarizer = ({
               ))}
             </select>
           </label>
-          <span>{activeModel?.tone}</span>
-          <label className="inline-flex items-center gap-2">
+          <span className="hidden sm:inline">{activeModel?.tone}</span>
+          <label className="col-span-2 grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 sm:col-span-1 sm:inline-flex">
             <span>Mode</span>
             <select
-              className={cn(ui.input, "min-h-8 rounded-md px-2 py-1 text-xs")}
+              className={cn(ui.input, "min-h-8 min-w-0 rounded-md px-2 py-1 text-xs")}
               value={summaryMode}
               onChange={(event) => setSummaryMode(event.target.value)}
             >
@@ -260,17 +260,36 @@ const Summarizer = ({
           </div>
         )}
 
-        <div className="sticky bottom-2 z-20 mt-3 flex flex-col flex-wrap items-stretch justify-end gap-2 rounded-xl border border-white/10 bg-[#101212]/88 p-2 backdrop-blur-xl sm:static sm:flex-row sm:items-center sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
-          <label className={cn(ui.ghost, "min-h-9 px-3", imageProcessing ? "cursor-not-allowed opacity-60" : "cursor-pointer")}>
+        <div className="mt-3 grid grid-cols-[2.5rem_2.5rem_minmax(0,1fr)] items-center gap-2 sm:flex sm:flex-wrap sm:justify-end">
+          <label
+            className={cn(
+              ui.ghost,
+              "h-10 min-h-10 w-10 cursor-pointer px-0 sm:w-auto sm:px-3",
+              imageProcessing && "cursor-not-allowed opacity-60",
+            )}
+            title="Upload image"
+          >
             <Image size={16} />
-            Upload image
+            <span className="hidden sm:inline">Upload image</span>
             <input className="hidden" type="file" accept="image/*" onChange={handleImageUpload} disabled={imageProcessing} />
           </label>
-          <button className={cn(ui.ghost, "min-h-9 px-3")} type="button" onClick={handleReset} disabled={loading || imageProcessing}>
+          <button
+            className={cn(ui.ghost, "h-10 min-h-10 w-10 px-0 sm:w-auto sm:px-3")}
+            type="button"
+            onClick={handleReset}
+            disabled={loading || imageProcessing}
+            title="Reset"
+            aria-label="Reset"
+          >
             <RotateCcw size={16} />
-            Reset
+            <span className="hidden sm:inline">Reset</span>
           </button>
-          <button className={cn(ui.primary, "min-h-10 px-5 shadow-[0_12px_40px_rgba(182,242,100,0.12)]")} type="button" onClick={handleSummarize} disabled={loading || imageProcessing || !inputText.trim()}>
+          <button
+            className={cn(ui.primary, "min-h-10 min-w-0 px-4 shadow-[0_12px_40px_rgba(182,242,100,0.12)] sm:px-5")}
+            type="button"
+            onClick={handleSummarize}
+            disabled={loading || imageProcessing || !inputText.trim()}
+          >
             {loading ? <Loader2 className="animate-spin" size={16} /> : <Scissors size={16} />}
             {loading ? loadingStep || "Summarizing" : "Summarize"}
           </button>

@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Link, Navigate, Route, Routes } from "react-router-dom";
-import { History as HistoryIcon, Mail, Menu, MessageCircle, Trash2 } from "lucide-react";
+import { Mail, Menu, MessageCircle, Trash2 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import LandingPage from "./components/LandingPage";
 import Summarizer from "./components/Summarizer";
@@ -411,7 +411,7 @@ const SummarizerApp = () => {
 
       <main className="min-w-0 px-3 py-3 pb-20 sm:px-4 lg:px-[clamp(0.75rem,2vw,1.5rem)] lg:pb-5">
         <div className="sticky top-2 z-40 mb-3 rounded-xl border border-white/10 bg-[#0b0d0d]/88 p-2 backdrop-blur-2xl">
-          <div className="grid gap-2 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center">
             <div className="flex min-w-0 items-center gap-3">
               <button className={cn(ui.icon, "lg:hidden")} type="button" onClick={() => setShowHistoryMobile(true)} aria-label="Buka history">
                 <Menu size={17} />
@@ -419,7 +419,7 @@ const SummarizerApp = () => {
               <BrandLockup compact />
             </div>
 
-            <div className="hidden min-w-0 items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#07080a]/70 px-3 py-2 text-sm text-white/46 md:flex">
+            <div className="hidden min-w-0 items-center justify-center gap-2 rounded-lg border border-white/10 bg-[#07080a]/70 px-3 py-2 text-sm text-white/46 md:col-span-2 md:flex lg:col-span-1">
               <span className="truncate">Paste teks atau upload gambar, lalu summarize.</span>
               <span className="text-white/20">/</span>
               <span>{stats.words} kata</span>
@@ -427,22 +427,20 @@ const SummarizerApp = () => {
               <span>{models.find((item) => item.value === model)?.label}</span>
             </div>
 
-            <div className="grid gap-2 sm:grid-cols-[auto_auto_auto] sm:items-center">
-              <button className={cn(ui.secondary, "min-h-9 px-3 lg:hidden")} type="button" onClick={() => setShowHistoryMobile(true)}>
-                <HistoryIcon size={16} />
-                History
-              </button>
+            <div className="flex items-center gap-2">
               <div className="hidden min-h-9 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.035] px-3 py-1.5 text-sm text-white/54 sm:flex">
                 {stats.chars} chars
               </div>
               <button
-                className={cn(ui.secondary, "min-h-9 px-3")}
+                className={cn(ui.secondary, "min-h-9 px-3 max-sm:h-10 max-sm:w-10 max-sm:px-0")}
                 type="button"
                 onClick={requestClearAllHistory}
                 disabled={!history.length}
+                aria-label="Clear history"
+                title="Clear history"
               >
                 <Trash2 size={16} />
-                Clear
+                <span className="max-sm:hidden">Clear</span>
               </button>
             </div>
           </div>
