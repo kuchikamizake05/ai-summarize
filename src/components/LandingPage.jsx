@@ -34,26 +34,26 @@ const commandRows = [
 const featureCards = [
   {
     icon: ScanText,
-    title: "OCR flow",
-    copy: "Gambar jadi teks, lalu langsung masuk composer.",
+    title: "Bahan masuk cepat",
+    copy: "Screenshot, catatan, dan potongan materi bisa langsung dibawa ke meja kerja yang sama.",
     span: "lg:col-span-2",
   },
   {
     icon: Zap,
-    title: "Fast models",
-    copy: "Pilih model sesuai tempo kerja.",
+    title: "Jawaban tidak bertele-tele",
+    copy: "Hasilnya dibuat ringkas, enak dipindahkan ke tugas berikutnya.",
     span: "",
   },
   {
     icon: LockKeyhole,
-    title: "Server-safe API",
-    copy: "Key OpenRouter tidak masuk client bundle.",
+    title: "Tenang dipakai",
+    copy: "Hal penting tetap di sisi yang semestinya, bukan tersebar ke browser.",
     span: "",
   },
   {
     icon: Layers3,
-    title: "Local archive",
-    copy: "History ringan, privat, dan cepat di browser.",
+    title: "Lanjut dari terakhir",
+    copy: "Ringkasan sebelumnya tetap dekat saat kamu butuh membuka ulang konteks.",
     span: "lg:col-span-2",
   },
 ];
@@ -198,13 +198,16 @@ const LandingPage = () => {
       <section id="demo" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
           <div>
-            <p className={ui.label}>Product proof</p>
+            <p className={ui.label}>Built for momentum</p>
             <h2 className="mt-3 max-w-3xl text-balance font-display text-[clamp(2rem,4.5vw,4.2rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-white">
-              Animasi yang menjelaskan workflow, bukan dekorasi.
+              Dari bahan mentah ke keputusan kecil berikutnya.
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/54">
+              Bukan tempat menumpuk teks lagi. Cukup masukkan bahan, ambil intinya, lalu lanjut kerja tanpa kehilangan arah.
+            </p>
           </div>
           <Link className={cn(ui.secondary, "self-start lg:self-end")} to="/app">
-            Buka app
+            Coba sekarang
             <ArrowRight size={16} />
           </Link>
         </div>
