@@ -86,13 +86,12 @@ const BrandLockup = ({ compact = false }) => (
       </div>
     </div>
   ) : (
-    <div>
-      <p className={ui.label}>{brand.lab}</p>
-      <img
-        src={brandAssets.logoWordmark}
-        alt={`${brand.product} wordmark`}
-        className="mt-2 h-auto w-full max-w-[13rem] object-contain"
-      />
+    <div className="flex items-center gap-3">
+      <LogoMark className="h-12 w-12" />
+      <div className="min-w-0">
+        <p className={ui.label}>{brand.lab}</p>
+        <h1 className="mt-1 font-display text-xl font-semibold leading-none text-white">{brand.product}</h1>
+      </div>
     </div>
   )
 );
@@ -411,8 +410,8 @@ const SummarizerApp = () => {
 
       <main className="min-w-0 px-3 py-3 pb-20 sm:px-4 lg:px-[clamp(0.75rem,2vw,1.5rem)] lg:pb-5">
         <div className="sticky top-2 z-40 mb-3 rounded-xl border border-white/10 bg-[#0b0d0d]/88 p-2 backdrop-blur-2xl">
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center">
-            <div className="flex min-w-0 items-center gap-3">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+            <div className="flex min-w-0 items-center gap-3 lg:hidden">
               <button className={cn(ui.icon, "lg:hidden")} type="button" onClick={() => setShowHistoryMobile(true)} aria-label="Buka history">
                 <Menu size={17} />
               </button>
